@@ -5,7 +5,9 @@
 	<div class="w-full bg-slate-50 p-3 flex flex-row items-center">
 		<div class="px-5 border-r-4 border-[#3fc2ed]">
 			{% load static %}
-			<img src="{% static '/logo-certipy-hor.png' %}" alt="Certi-Py" style="height: 50px;"/>
+			<a href="/">
+				<img src="{% static '/logo-certipy-hor.png' %}" alt="Certi-Py" style="height: 50px;"/>
+			</a>
 		</div>
 		<div class="px-5 grow">
 			<h1 class="text-xl font-thin">{% block title %}{% endblock %}</h1>
