@@ -8,60 +8,55 @@
 {% endblock %}
 
 {% block app_slot %}
-<div class="p-6 bg-gray-100 text-gray-900">
-	<form novalidate="" action="{% url 'Cursos' %}" method="post" class="container flex flex-col mx-auto space-y-12">
-		{% csrf_token %}
-		<fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
-			<div class="space-y-2 col-span-full lg:col-span-1">
-				<p class="font-medium">Novo Curso</p>
-				<p class="text-xs">Crie um novo curso para adicionar alunos</p>
-			</div>
-			<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-				<div class="col-span-full sm:col-span-3">
-					<label for="title" class="text-sm">Título do Curso</label>
-					<input id="title" type="text" placeholder="Título do Curso" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+<div class="grow flex flex-col">
+	<div class="mx-2 mt-2 bg-blue-100 rounded-lg">
+		<form novalidate="" action="{% url 'Cursos' %}" method="post" class="container flex flex-col mx-auto space-y-12">
+			<fieldset class="grid grid-cols-4 gap-6 p-4">
+				<div class="space-y-2 col-span-full lg:col-span-1">
+					<p class="font-medium">Novo Curso</p>
+					<p class="text-xs">Crie um novo curso para adicionar alunos</p>
 				</div>
-				<div class="col-span-full sm:col-span-3">
-					<label for="teacher" class="text-sm">Ministrado por</label>
-					<input id="teacher" type="text" placeholder="Professor(a)" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+					<div class="col-span-full">
+						<label for="title" class="text-sm">Título do Curso</label>
+						<input id="title" name="title" type="text" placeholder="Título do Curso" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div>
+					<div class="col-span-full sm:col-span-2">
+						<label for="teacher" class="text-sm">Ministrado por</label>
+						<input id="teacher" name="teacher" type="text" placeholder="Professor(a)" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div>
+					<div class="col-span-full sm:col-span-2">
+						<label for="workload" class="text-sm">Carga Horária (h)</label>
+						<input id="workload" name="workload" type="number" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div>
+					<div class="col-span-full sm:col-span-2">
+						<label for="date" class="text-sm">Data de Conclusão</label>
+						<input id="date" name="date" type="date" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div>
+					{% csrf_token %}
+					<div class="col-span-full">
+						<button type="submit" class="px-8 py-3 font-semibold rounded bg-gray-800 text-gray-100">Salvar</button>
+					</div>
 				</div>
-				<div class="col-span-full">
-					<label for="address" class="text-sm">Address</label>
-					<input id="address" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+			</fieldset>
+		</form>
+	</div>
+	<div class="mx-2 mt-2">
+		<h1 class="font-bold text-xl">Cursos Cadastrados</h1>
+	</div>
+	<div class="relative grow mt-1 mb-1 mx-2">
+		<div class="absolute top-0 left-0 bottom-0 w-full overflow-auto flex flex-row gap-2 py-2 flex-wrap space-between">
+			{% for course in courses %}
+				<div class="bg-blue-200 rounded-lg px-4 py-2 min-w-56 grow">
+					<a href="/courses/{{course.id}}">
+						<h1 class="font-bold text-lg truncate">#{{course.id}} - {{course.title}}</h1>
+						<p class="truncate">{{course.workload}} h</p>
+						<p class="truncate">{{course.date}}</p>
+						<p class="truncate">{{course.teacher}}</p>
+					</a>
 				</div>
-				<div class="col-span-full sm:col-span-2">
-					<label for="city" class="text-sm">City</label>
-					<input id="city" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
-				</div>
-				<div class="col-span-full sm:col-span-2">
-					<label for="state" class="text-sm">State / Province</label>
-					<input id="state" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
-				</div>
-				<div class="col-span-full sm:col-span-2">
-					<label for="zip" class="text-sm">ZIP / Postal</label>
-					<input id="zip" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
-				</div>
-			</div>
-		</fieldset>
-		<!-- <div class="bg-blue-200 flex flex-col w-full">
-			<div class="mb-3">
-				<label for="title" class="block">Título</label>
-				<input name="title" class="rounded-sm border" type="text">
-			</div>
-			<div class="mb-3">
-				<label for="teacher" class="block">Ministrado Por</label>
-				<input name="teacher" class="rounded-sm border" type="text">
-			</div>
-			<div class="mb-3">
-				<label for="workload" class="block">Carga Horária</label>
-				<input name="workload" class="rounded-sm border" type="number">
-				<label for="date" class="block">Data</label>
-				<input name="date" class="rounded-sm border" type="date">
-			</div>
-		</div> -->
-	</form>
-</div>
-<div>
-
+			{% endfor %}
+		</div> 
+	</div>
 </div>
 {% endblock %}
