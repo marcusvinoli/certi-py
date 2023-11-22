@@ -16,11 +16,12 @@
 				{% load static %}
 				<img src="{% static '/logo-certipy-hor.png' %}" alt="Certi-Py" style="height: 50px;"/>
 			</div>
-			{% block top_bar %}
-			<div class="px-5">
-				<h1 class="text-xl font-thin">{{top_bar.title}}</h1>
+			<div class="px-5 grow">
+				<h1 class="text-xl font-thin">{% block title %}{% endblock %}</h1>
 			</div>
-			{% endblock %}
+			<div class="px-5">
+				<h1 class="text-xl font-thin">{% block actions %}{% endblock %}</h1>
+			</div>
 		</div>
 		<div class="grow">
 		{% block app_slot %}

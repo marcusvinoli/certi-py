@@ -1,27 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br" class="w-full h-full">
-	<head>
-		<title>Certi-Py</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
-	<body class="w-full h-full flex flex-col items-center justify-center" style="font-family: 'Rubik', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-		<div class="w-full bg-slate-50 p-3 flex flex-row items-center">
-			<div class="px-5 border-r-4 border-[#3fc2ed]">
-				{% load static %}
-				<img src="{% static '/logo-certipy-hor.png' %}" alt="Certi-Py" style="height: 50px;"/>
-			</div>
-			<div class="px-5">
-				<h1 class="text-xl font-thin">Configurações</h1>
-			</div>
-		</div>
-		<div class="grow">
-			
-		</div>
-	</body>
-</html>
+{% extends 'app_base.html' %}
+{% block title %} 
+	Configurações
+{% endblock %}
+
+{% block actions %}
+
+{% endblock %}
+
+{% block app_slot %}
+
+{% endblock %}
