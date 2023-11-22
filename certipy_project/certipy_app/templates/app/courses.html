@@ -8,5 +8,60 @@
 {% endblock %}
 
 {% block app_slot %}
+<div class="p-6 bg-gray-100 text-gray-900">
+	<form novalidate="" action="{% url 'Cursos' %}" method="post" class="container flex flex-col mx-auto space-y-12">
+		{% csrf_token %}
+		<fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
+			<div class="space-y-2 col-span-full lg:col-span-1">
+				<p class="font-medium">Novo Curso</p>
+				<p class="text-xs">Crie um novo curso para adicionar alunos</p>
+			</div>
+			<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+				<div class="col-span-full sm:col-span-3">
+					<label for="title" class="text-sm">Título do Curso</label>
+					<input id="title" type="text" placeholder="Título do Curso" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+				<div class="col-span-full sm:col-span-3">
+					<label for="teacher" class="text-sm">Ministrado por</label>
+					<input id="teacher" type="text" placeholder="Professor(a)" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+				<div class="col-span-full">
+					<label for="address" class="text-sm">Address</label>
+					<input id="address" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+				<div class="col-span-full sm:col-span-2">
+					<label for="city" class="text-sm">City</label>
+					<input id="city" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+				<div class="col-span-full sm:col-span-2">
+					<label for="state" class="text-sm">State / Province</label>
+					<input id="state" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+				<div class="col-span-full sm:col-span-2">
+					<label for="zip" class="text-sm">ZIP / Postal</label>
+					<input id="zip" type="text" placeholder="" class="w-full rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri">
+				</div>
+			</div>
+		</fieldset>
+		<!-- <div class="bg-blue-200 flex flex-col w-full">
+			<div class="mb-3">
+				<label for="title" class="block">Título</label>
+				<input name="title" class="rounded-sm border" type="text">
+			</div>
+			<div class="mb-3">
+				<label for="teacher" class="block">Ministrado Por</label>
+				<input name="teacher" class="rounded-sm border" type="text">
+			</div>
+			<div class="mb-3">
+				<label for="workload" class="block">Carga Horária</label>
+				<input name="workload" class="rounded-sm border" type="number">
+				<label for="date" class="block">Data</label>
+				<input name="date" class="rounded-sm border" type="date">
+			</div>
+		</div> -->
+	</form>
+</div>
+<div>
 
+</div>
 {% endblock %}
