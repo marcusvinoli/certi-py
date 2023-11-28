@@ -13,8 +13,8 @@
 		<form novalidate="" action="{% url 'Cursos' %}" method="post" class="container flex flex-col mx-auto space-y-12">
 			<fieldset class="grid grid-cols-4 gap-6 p-4">
 				<div class="space-y-2 col-span-full lg:col-span-1">
-					<p class="font-medium">Novo Curso</p>
-					<p class="text-xs">Crie um novo curso para adicionar alunos</p>
+					<p class="font-bold text-lg">Novo Curso</p>
+					<p class="text-sm">Crie um novo curso para adicionar alunos</p>
 				</div>
 				<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 					<div class="col-span-full">
@@ -47,7 +47,7 @@
 	<div class="relative grow mt-1 mb-1 mx-2">
 		<div class="absolute top-0 left-0 bottom-0 w-full overflow-auto flex flex-row gap-2 py-2 flex-wrap space-between">
 			{% for course in courses %}
-				<div class="bg-blue-200 rounded-lg px-4 py-2 min-w-56 grow">
+				<div class="bg-blue-200 rounded-lg p-4 h-min grow">
 					<a href="/courses/{{course.id}}">
 						<h1 class="font-bold text-lg truncate">#{{course.id}} - {{course.title}}</h1>
 						<p class="truncate">{{course.workload}} h</p>
