@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 
 class Student(models.Model):
@@ -24,4 +25,5 @@ class Certificate(models.Model):
 class Template(models.Model): 
 	id = models.AutoField(primary_key = True)
 	name = models.TextField(max_length = 255)
-	path = models.TextField(max_length = 255)
+	file = models.FileField(upload_to = 'certipy_templates/user')
+	fields = models.TextField(max_length = 255)

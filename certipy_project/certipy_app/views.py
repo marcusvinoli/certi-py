@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-from .models import Course, Student
-from django.core.serializers import serialize
+from django.http import JsonResponse
 from datetime import datetime
+from .forms import TemplateForm
+from .models import Course, Student, Template
 
 # Create your views here.
 def home(request):
@@ -59,19 +59,34 @@ def course_details(request, course_id):
 		new_student.save()
 		req_course.students.add(new_student.id)
 		req_course.save()
-	elif request.method == 'PATCH': 
-		print("{}", request)
 	course = { 'course': req_course }
 	return render(request, 'app/course_details.html', course)
 
 def templates(request): 
-	return render(request, 'app/templates.html')
+	message = "Carregue um template."
+	if request.method == 'POST': 
+		form = TemplateForm(request.POST, request.FILES)
+		if form.is_valid():
+			new_template = Template()
+			new_template.name = request.POST.get('name')
+			new_template.fields = request.POST.get('fields')
+			new_template.file = request.FILES['templatefile']
+			new_template.save()
+			return redirect('Templates')
+		else:
+			message = 'Erro ao carregar as informações. Erro:'
+	else: 
+		form = TemplateForm()
+	req_templates = Template.objects.all()
+	context = {'templates': req_templates, 'form': form, 'message': message}
+	return render(request, 'app/templates.html', context)
 
 def settings(request): 
 	return render(request, 'app/settings.html')
 
-def certificates(request): 
+def certificates(request):
 	return render(request, 'app/certificates.html')
+
 
 def api_students(request): 
 	students = Student.objects.all()
@@ -83,6 +98,16 @@ def api_students(request):
 			'email': student.email,
 			'cpf': student.cpf,
 		})
-	print(sanitized_data)
 	data = { 'students': sanitized_data }
 	return JsonResponse(data, safe=False)
+
+def api_template(request):
+	templates = Template.objects.all()
+	sanitized_tempaltes = []
+	for template in templates: 
+		sanitized_tempaltes.append({
+			'id': template.id,
+			'name': template.name,
+			'fields': template.fields,
+		})
+	return JsonResponse(sanitized_tempaltes, safe=False)

@@ -8,5 +8,74 @@
 {% endblock %}
 
 {% block app_slot %}
+<div class="grow flex flex-col">
+	<div class="mx-2 mt-2  bg-blue-100 rounded-lg">
+		<form novalidate="" action="{% url 'Templates' %}" method="post" class="container flex flex-col mx-auto space-y-12" enctype="multipart/form-data">
+			<fieldset class="grid grid-cols-4 gap-6 p-4">
+				<div class="space-y-2 col-span-full lg:col-span-1">
+					<p class="font-bold text-lg">Novo Template</p>
+					<p class="text-sm">Arraste ou selecione um arquivo .SVG para adicionar um novo template.</p>
+					<p class="text-sm"><b>ATENÇÃO! </b>É necessário que o template possua ao menos um dos campos abaixo:</p>
+					<ul class="text-sm">
+						<li>{STUDENT_NAME}</li>
+						<li>{COURSE_TITLE}</li>
+					</ul>
+					<p class="text-sm">Já os campos abaixo são opcionais:</p>
+					<ul class="text-sm">
+						<li>{STUDENT_CPF}</li>
+						<li>{STUDENT_EMAIL}</li>
+						<li>{COURSE_WORKLOAD}</li>
+						<li>{COURSE_TEACHERS_NAME}</li>
+					</ul>
+				</div>
+				<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+					<div class="col-span-full">
+						<label for="name" class="text-sm">Nome do Template</label>
+						<input id="name" name="name" type="text" placeholder="Nome do Template" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div>
+					<div class="col-span-full sm:col-span-3">
+						<label for="fields" class="text-sm">Campos encontrados</label>
+						<input id="fields" name="fields" type="text" placeholder="Professor(a)" class="w-full p-2 rounded-md focus:ring focus:ri text-gray-900 border-gray-300 focus:ri" required>
+					</div> 
+					{% csrf_token %}
+					<div class="col-span-full">
+						<button type="submit" class="px-8 py-3 font-semibold rounded bg-gray-800 text-gray-100">Salvar</button>
+					</div>
+					<div class="bg-pink-200">
+						{{ message }}
+						<p>{{ form.non_field_errors }}</p>
+						<p>{{ form.templatefile.label_tag }} {{ form.templatefile.help_text }}</p>
+						<p>
+							{{ form.templatefile.errors }}
+							{{ form.templatefile }}
+						</p>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="mx-2 mt-2">
+		<h1 class="font-bold text-xl">Templates</h1>
+	</div>
+	<div class="relative grow mt-1 mb-1 mx-2">
+		<div class="absolute top-0 left-0 bottom-0 w-full overflow-auto space-between">
+			{% if templates %}
+				{% for template in templates %}
+					<div class="bg-blue-200 rounded-lg px-4 py-2 mb-2 grow flex flex-row">
+						<div class="grow">
+							<h1 class="font-bold text-lg truncate">#{{template.id}} - {{template.name}}</h1>
+							<p class="">{{template.fields}}</p>
+						</div>
+						<div class="bg-blue-100">
+							<button>Apagar</button>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
 
+			{% endif %}
+			
+		</div> 
+	</div>
+</div>
 {% endblock %}

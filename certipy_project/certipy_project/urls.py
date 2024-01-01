@@ -13,4 +13,5 @@ urlpatterns = [
     path('certificates/', views.certificates, name="Certificados"),
     path('templates/', views.templates, name="Templates"),
     path('api/v1/students', views.api_students, name="ApiAlunos"),
+    path('api/v1/templates', views.api_template, name="ApiTemplates"),
 ]
